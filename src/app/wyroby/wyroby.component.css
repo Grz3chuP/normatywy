@@ -1,0 +1,23 @@
+.zmiescWszystko {
+  width: fit-content;
+  text-wrap: nowrap;
+}
+
+.pasekWczytywania {
+  background-color: #ffffff;
+  z-index: 20;
+  animation: infinite ease-in 1.2s ;
+  animation-name: ladowanie;
+}
+@keyframes ladowanie {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+ 100% {
+   opacity: 0.4;
+ }
+
+}

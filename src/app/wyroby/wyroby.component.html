@@ -1,1 +1,39 @@
-<p>wyroby works!</p>
+<div class="wrapper m-2">
+  <fieldset [disabled]="wyroby.length === 0" class="panelDodawania  d-flex align-items-center gap-2">
+
+    <div class="zmiescWszystko">Dodaj wyrób do analizy:</div>
+
+    <form  class="w-100 mt-4 position-relative" >
+      @if (wyroby.length === 0) {
+        <div class="position-absolute w-100 h-100 pasekWczytywania"></div>
+      }
+      <mat-form-field class="w-100">
+        <input type="text"
+               placeholder="Wybierz wyrób"
+               [matAutocomplete]="auto"
+               name="lista"
+               [(ngModel)]="wybranyWyrob"
+                matInput>
+        <mat-autocomplete #auto="matAutocomplete">
+          @for (wyrob of wyroby; track wyrob) {
+            <mat-option [value]="wyrob.wyrob"  >{{wyrob.wyrob}}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="dodajDoAnalizy()" style="background-color: #7c4fcd; color: white; width: 250px;" class="przycisk zmiescWszystko">Dodaj do analizy</button>
+  </fieldset>
+  <div class="podsumowanieWrapper d-flex">
+    <button mat-raised-button class="przycisk" style="width: 250px; background-color: #ffd740; color: black" color="">Czyść analizę</button>
+    <div class="podsumowanie"></div>
+  </div>
+  <div class="d-flex gap-2 mt-2 align-items-center">
+    <div>Zawartość</div>
+    @for (nazwa of zawartosc; track nazwa) {
+      <div class="przycisk bg-primary p-1 bialyKolor">{{nazwa}}</div>
+    }
+
+
+  </div>
+</div>
+
