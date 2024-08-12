@@ -1,12 +1,17 @@
-<fieldset class="przewodnikiWrapper">
-<h3>Baza danych przewodników:</h3>
+<fieldset [disabled]="loading()" class="przewodnikiWrapper p-2">
+  <h3>Baza danych przewodników:</h3>
   <div class="filter align-items-center gap-1">
     <label>Filtruj dane do wczytania na wstępie:</label>
-
-      <input  type="text" class="form-control p-1 w-auto">
-    <button mat-flat-button class="rounded-1">Wczytaj</button>
-
-
-
+    <input  type="text" class="form-control p-1 w-auto" [(ngModel)]="daneDoZapytania.znak">
+    <button mat-flat-button class="rounded-1" (click)="wczytajPrzewodniki()">Wczytaj</button>
   </div>
+  <input type="checkbox" class="pt-2" [(ngModel)]="daneDoZapytania.bezKWN"> <label class="pt-2">Nie wczytuj przewodników Kxx000 (bez przewodników na pokrycie KWN)</label>
+  <div class="textPrzykladu pt-1">Przykład sorotwania: naciskamy kolumnę oznaczenie literowe sortując, następnie trzymając SHIFT naciskamy kolumnę numer.</div>
 </fieldset>
+<ag-grid-angular #agGrid style="width: 100%; height: 50vh;" class="ag-theme-balham"
+                 [gridOptions]="gridOptions"
+>
+</ag-grid-angular>
+
+
+

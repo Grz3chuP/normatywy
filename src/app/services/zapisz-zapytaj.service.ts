@@ -12,7 +12,7 @@ export class ZapiszZapytajService {
 
   }
   zapytaj_o(co: string , dla: any): Observable<any> {
-    return this.http.post(`http://local.mcp:8888/apps/xhr/przeglady/zapytaj_o/${co}`, {
+    return this.http.post(`http://local.mcp:8888/apps/xhr/normatywy_wyrobow/zapytaj_o/${co}`, {
       dla: dla
     })
   }
