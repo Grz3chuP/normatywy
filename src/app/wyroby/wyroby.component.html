@@ -21,19 +21,27 @@
         </mat-autocomplete>
       </mat-form-field>
     </form>
-    <button mat-raised-button (click)="dodajDoAnalizy()" style="background-color: #7c4fcd; color: white; width: 250px;" class="przycisk zmiescWszystko">Dodaj do analizy</button>
+    <button [disabled]="loading()" mat-raised-button (click)="dodajDoAnalizy()" style="background-color: #7c4fcd; color: white; width: 250px;" class="przycisk zmiescWszystko">Dodaj do analizy</button>
   </fieldset>
-  <div class="podsumowanieWrapper d-flex">
-    <button mat-raised-button class="przycisk" style="width: 250px; background-color: #ffd740; color: black" color="">Czyść analizę</button>
-    <div class="podsumowanie"></div>
+  <div class="podsumowanieWrapper d-flex gap-2 align-items-center">
+    <button [disabled]="loading()" mat-raised-button class="przycisk" (click)="czyscAnalize()" style="width: 250px; background-color: #ffd740; color: black" color="">Czyść analizę</button>
+   @if(zawartosc.length > 0) {
+     <div class="podsumowanie">Widoczne wiersze - Suma Tpz: <strong>{{_suma_tpz}}</strong>h <small>({{_suma_tpz * 60}} minut)</small> , Suma Tj (1 kpl):<strong>{{suma_tj}}</strong>h <small>({{(suma_tj * 60).toFixed(0)}} minut)</small></div>
+   }
   </div>
-  <div class="d-flex gap-2 mt-2 align-items-center">
+  <div class="d-flex flex-wrap gap-2 mt-2 mb-2 align-items-center">
     <div>Zawartość</div>
     @for (nazwa of zawartosc; track nazwa) {
       <div class="przycisk bg-primary p-1 bialyKolor">{{nazwa}}</div>
     }
-
-
   </div>
+  <ag-grid-angular #agGrid style="width: 100%; height: 50vh;" class="ag-theme-balham"
+                   [gridOptions]="gridOptions"
+  >
+  </ag-grid-angular>
+  @if(tresc) {
+    <mat-card class="p-2" [innerHtml]="tresc | nl2br"></mat-card>
+  }
+
 </div>
 

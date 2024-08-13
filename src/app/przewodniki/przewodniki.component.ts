@@ -50,6 +50,7 @@ constructor() {
       field: "numer_przewodnika",
       filter: "agTextColumnFilter",
       width: 150,
+      cellRenderer:  (t: any)=>`<a href="../../mcp3/technologia/przewodniki?string=${t.value}&przycisk=Wybierz" target="_blank">${t.value}</a>`
 
     }, {
       headerName: "oznaczenie",
